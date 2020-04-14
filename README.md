@@ -11,7 +11,7 @@ Il n'y a pas besoin de configuration spécifique pour lancer l'application. Si S
 
 ```
 $ cd my_project/
-$ symfony serve
+$ symfony server:start
 ```
 
 Si le binaire Symfony n'est pas installé, lancer `php -S localhost:8000 -t public/` pour utiliser le serveur web PHP intégré ou bien configurer un serveur web comme Nginx ou Apache afin de lancer l'application.
