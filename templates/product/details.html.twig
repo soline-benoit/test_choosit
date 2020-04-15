@@ -26,7 +26,8 @@
                   method="post" class="input-group">
                 <input type="number" name="quantity"
                        min="0" class="form-control"
-                       value="{{ cartSession.totalQuantity > 0 ? cartSession.quantityByProduct(product) }}"
+                       value="{{ cartSession.quantityByProduct(product) > 0 ?
+                       cartSession.quantityByProduct(product) }}"
                        placeholder="Quantité">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
