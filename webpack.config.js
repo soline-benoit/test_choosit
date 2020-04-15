@@ -14,6 +14,11 @@ Encore
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]',
+    })
+
     /*
      * ENTRY CONFIG
      *
@@ -46,6 +51,7 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
+    .enableSassLoader()
 
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
