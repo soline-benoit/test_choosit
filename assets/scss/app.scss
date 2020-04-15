@@ -1,4 +1,5 @@
 $primary: #78CDD7;
+$secondary: lighten($primary, 20%);
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";

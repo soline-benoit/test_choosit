@@ -13,7 +13,8 @@
 {% block content %}
     <div class="row">
         <div class="col-4">
-            <img src="https://www.bagherra.eu/wp-content/uploads/2016/11/orionthemes-placeholder-image-1.png" alt="image du produit {{ product.name }}" class="img-fluid"/>
+            <img src="{{ asset('build/images/' ~ product.slug ~ '.jpg') }}"
+                 alt="image du produit {{ product.name }}" class="img-fluid"/>
         </div>
         <div class="col-8">
             <h1>{{ product.name }}
