@@ -11,5 +11,25 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ product.name }}</h1>
+    <div class="row">
+        <div class="col-4">
+            <img src="https://www.bagherra.eu/wp-content/uploads/2016/11/orionthemes-placeholder-image-1.png" alt="image du produit {{ product.name }}" class="img-fluid"/>
+        </div>
+        <div class="col-8">
+            <h1>{{ product.name }}
+                <span class="badge badge-secondary font-weight-light">{{ product.price }}€</span>
+            </h1>
+            <p>{{ product.description }}</p>
+
+            <form class="input-group">
+                <input type="number" min="0" class="form-control" placeholder="Quantité">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        Ajouter au panier
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
