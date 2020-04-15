@@ -1,0 +1,15 @@
+{% extends "layout.html.twig" %}
+
+{% block breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('index') }}">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('product_list') }}">Liste des produits</a></li>
+            <li class="breadcrumb-item active">{{ product.name }}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ product.name }}</h1>
+{% endblock %}

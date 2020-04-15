@@ -1,0 +1,33 @@
+{% extends "layout.html.twig" %}
+
+{% block breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('index') }}">Accueil</a></li>
+            <li class="breadcrumb-item active">Liste des produits</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <h1>Liste des produits</h1>
+    <hr/>
+
+    <div class="card-columns">
+        {% for product in products %}
+            <div class="card">
+                <img src="https://www.bagherra.eu/wp-content/uploads/2016/11/orionthemes-placeholder-image-1.png" class="card-img-top" alt="image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                </div>
+                <div class="card-footer bg-transparent text-right">
+                    <a href="{{ path('product_details', {slug: product.slug}) }}" class="btn btn-light">
+                        <i class="fas fa-search-plus"></i>
+                        Détails du produit
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -13,6 +13,6 @@ class MainController extends AbstractController
      */
     public function index()
     {
-        return $this->render("index.html.twig");
+        return $this->redirectToRoute("product_list");
     }
 }
