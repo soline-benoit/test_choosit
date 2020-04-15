@@ -18,9 +18,12 @@
             <div class="col-sm-4 mb-3">
                 <div class="card h-100">
                     <img src="https://www.bagherra.eu/wp-content/uploads/2016/11/orionthemes-placeholder-image-1.png"
-                         class="card-img-top" alt="image">
+                         class="card-img-top" alt="image du produit {{ product.name }}">
                     <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
+                        <h5 class="card-title">
+                            {{ product.name }}
+                            <span class="badge badge-secondary font-weight-light">{{ product.price }}€</span>
+                        </h5>
                         <p class="card-text">{{ product.description }}</p>
                     </div>
                     <div class="card-footer bg-transparent text-right">
