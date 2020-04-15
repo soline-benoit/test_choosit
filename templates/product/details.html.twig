@@ -24,7 +24,9 @@
             </h1>
             <p>{{ product.description }}</p>
 
-            <form action="{{ path('add_to_cart_action', {slug: product.slug}) }}"
+            <form action="{{ cartSession.quantityByProduct(product) > 0 ?
+                                path('edit_quantity_action', {slug: product.slug}) :
+                                path('add_to_cart_action', {slug: product.slug}) }}"
                   method="post" class="input-group">
                 <input type="number" name="quantity"
                        min="0" class="form-control"

@@ -21,12 +21,14 @@
                 {% set sum = 0 %}
                 {% for item in listProducts %}
                     <li class="list-group-item d-flex mt-3">
-                        <div class="mr-2 align-self-center">
-                            <img src="{{ asset('build/images/' ~ item.product.slug ~ '.jpg') }}"
-                                 alt="image du produit {{ item.product.name }}"
-                                 width="100px" class="img-thumbnail"/>
+                        <div class="mr-2">
+                            <a href="{{ path('product_details', {slug: item.product.slug}) }}">
+                                <img src="{{ asset('build/images/' ~ item.product.slug ~ '.jpg') }}"
+                                     alt="image du produit {{ item.product.name }}"
+                                     width="200px" class="img-thumbnail"/>
+                            </a>
                         </div>
-                        <div>
+                        <div class="align-self-center">
                             <h5>
                                 {{ item.product.name }}
                                 <span class="badge badge-secondary font-weight-light">
