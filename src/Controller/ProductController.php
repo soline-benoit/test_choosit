@@ -21,7 +21,7 @@ class ProductController extends AbstractController
     public function showList(EntityManagerInterface $manager)
     {
         $productRep = $manager->getRepository(Product::class);
-        $products = $productRep->findAll();
+        $products = $productRep->findBy([], ["name" => "ASC"]);
 
         return $this->render("product/list.html.twig", [
             "products" => $products
