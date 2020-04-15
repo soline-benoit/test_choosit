@@ -6,7 +6,7 @@
         <h5 class="my-0 mr-md-auto font-weight-normal">
             <a href="{{ path('index') }}">Test Choosit</a>
         </h5>
-        <a href="#" type="button" class="btn btn-primary">
+        <a href="{{ path('show_cart') }}" type="button" class="btn btn-primary">
             <i class="fas fa-shopping-basket"></i> Mon panier
             {% if cartSession.totalQuantity > 0 %}
             <span class="badge badge-light">

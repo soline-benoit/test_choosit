@@ -33,9 +33,21 @@
                        placeholder="Quantité">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
-                        Ajouter au panier
-                        <i class="fas fa-cart-plus"></i>
+                        {% if cartSession.quantityByProduct(product) > 0 %}
+                            Modifier la quantité
+                            <i class="fas fa-edit"></i>
+                        {% else %}
+                            Ajouter au panier
+                            <i class="fas fa-cart-plus"></i>
+                        {% endif %}
                     </button>
+                    {% if cartSession.quantityByProduct(product) > 0 %}
+                        <a href="{{ path('remove_from_cart_action', {slug: product.slug}) }}"
+                           class="btn btn-secondary" type="submit">
+                            Retirer du panier
+                            <i class="fas fa-times"></i>
+                        </a>
+                    {% endif %}
                 </div>
             </form>
         </div>

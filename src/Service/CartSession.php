@@ -4,18 +4,22 @@ namespace App\Service;
 
 use App\Entity\Product;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class CartSession
 {
     private $session;
+    private $manager;
 
     /**
      * CartSession constructor.
      * @param SessionInterface $session
+     * @param EntityManagerInterface $manager
      */
-    public function __construct(SessionInterface $session)
+    public function __construct(SessionInterface $session, EntityManagerInterface $manager)
     {
         $this->session = $session;
+        $this->manager = $manager;
     }
 
     /**
