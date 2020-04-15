@@ -8,8 +8,10 @@
         </h5>
         <a href="#" type="button" class="btn btn-primary">
             <i class="fas fa-shopping-basket"></i> Mon panier
-            {% if cartSession.getCart|length > 0 %}
-            <span class="badge badge-light">4</span>
+            {% if cartSession.totalQuantity > 0 %}
+            <span class="badge badge-light">
+                {{ cartSession.totalQuantity < 99 ? cartSession.totalQuantity : "99+" }}
+            </span>
             {% endif %}
         </a>
     </div>
@@ -17,6 +19,24 @@
     {% block breadcrumb %}{% endblock %}
 
     <div class="container py-5">
+
+        {% if app.request.hasPreviousSession %}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}" role="alert">
+
+                        {% if label == "success" %}
+                            <i class="fas fa-check-circle"></i>
+                        {% elseif label == "danger" %}
+                            <i class="fas fa-times-circle"></i>
+                        {% endif %}
+
+                        {{ message|raw }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
         {% block content %}{% endblock %}
     </div>
 {% endblock %}

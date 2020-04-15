@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CartSession
 {
-    private $cart;
+    private $session;
 
     /**
      * CartSession constructor.
@@ -15,7 +15,7 @@ class CartSession
      */
     public function __construct(SessionInterface $session)
     {
-        $this->cart = $session->get("cart", []);
+        $this->session = $session;
     }
 
     /**
@@ -23,7 +23,29 @@ class CartSession
      */
     public function getCart(): array
     {
-        return $this->cart;
+        return $this->session->get("cart", []);
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalQuantity(): int
+    {
+        return array_sum($this->getCart());
+    }
+
+    /**
+     * @param Product $product
+     * @return int
+     */
+    public function getQuantityByProduct(Product $product): int
+    {
+        $cart = $this->getCart();
+        if (array_key_exists($product->getSlug(), $cart)) {
+            return $cart[$product->getSlug()];
+        }
+
+        return 0;
     }
 
     /**
@@ -32,12 +54,13 @@ class CartSession
      */
     public function addToCart(Product $product, int $quantity)
     {
-        if (array_key_exists($product->getId(), $this->cart)) {
-            $oldQuantity = $this->cart[$product->getId()];
-            $newQuantity = $oldQuantity + $quantity;
-            $this->cart[$product->getId()] = $newQuantity;
-        } else {
-            $this->cart[$product->getId()] = $quantity;
-        }
+        $cart = $this->getCart();
+        $cart[$product->getSlug()] = $quantity;
+        $this->session->set("cart", $cart);
+    }
+
+    public function emptyCart()
+    {
+        $this->session->set("cart", []);
     }
 }
