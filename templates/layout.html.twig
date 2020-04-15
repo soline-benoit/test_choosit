@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm sticky-top">
+        <h5 class="my-0 mr-md-auto font-weight-normal">
+            <a href="{{ path('index') }}">Test Choosit</a>
+        </h5>
+        <a href="#" type="button" class="btn btn-primary">
+            <i class="fas fa-shopping-basket"></i> Mon panier
+            <span class="badge badge-light">4</span>
+        </a>
+    </div>
+
+    {% block breadcrumb %}{% endblock %}
+
+    <div class="container py-5">
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}
