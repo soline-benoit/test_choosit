@@ -17,8 +17,10 @@
         {% for product in products %}
             <div class="col-sm-4 mb-3">
                 <div class="card h-100">
-                    <img src="{{ asset('build/images/' ~ product.slug ~ '.jpg') }}"
-                         class="card-img-top" alt="image du produit {{ product.name }}">
+                    <a href="{{ path('product_details', {slug: product.slug}) }}">
+                        <img src="{{ asset('build/images/' ~ product.slug ~ '.jpg') }}"
+                             class="card-img-top" alt="image du produit {{ product.name }}">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title">
                             {{ product.name }}
