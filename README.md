@@ -22,3 +22,10 @@ Exécuter ces commandes pour lancer les tests :
 $ cd my_project/
 $ ./bin/phpunit
 ```
+
+## Fixtures
+Exécuter ces commandes pour charger les fixtures :
+```
+$ cd my_project/
+$ php bin/console doctrine:fixtures:load
+```
