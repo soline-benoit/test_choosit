@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+            margin: auto;
+        }
+        .form-signin .checkbox {
+            font-weight: 400;
+        }
+        .form-signin .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    </style>
+
+    <form class="form-signin" method="post">
+        <h2 class="text-center"><a href="{{ path("index") }}">Test Choosit</a></h2>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Connexion à l'espace admin</h1>
+
+        {% if error %}
+            <div class="alert alert-danger">
+                <i class="fas fa-times-circle"></i>
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="alert alert-secondary">
+                <i class="fas fa-info-circle"></i>
+                Vous êtes connecté en tant que <strong>{{ app.user.username }}</strong>,
+                <a href="{{ path('app_logout') }}">déconnexion</a>
+            </div>
+        {% endif %}
+
+        <label for="inputUsername" class="sr-only">Nom d'utilisateur</label>
+        <input type="text" id="inputUsername" name="username"
+               value="{{ last_username }}" class="form-control" placeholder="admin" required autofocus>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password"
+               class="form-control" placeholder="Mot de passe" required>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <div class="custom-control custom-switch my-3">
+            <input type="checkbox" class="custom-control-input" name="_remember_me" id="rememberMe">
+            <label class="custom-control-label" for="rememberMe">Se souvenir de moi</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+
+    </form>
+{% endblock %}
