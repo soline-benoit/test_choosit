@@ -41,3 +41,10 @@
         {% endfor %}
     </div>
 {% endblock %}
+
+{% block btn_json %}
+    <a href="{{ path('json_all_products') }}" class="btn btn-outline-light" target="_blank">
+        <i class="fas fa-download"></i>
+        Tous les produits au format json
+    </a>
+{% endblock %}

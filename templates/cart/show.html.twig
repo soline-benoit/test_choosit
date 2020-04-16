@@ -69,3 +69,10 @@
         </div>
     {% endif %}
 {% endblock %}
+
+{% block btn_json %}
+    <a href="{{ path('json_cart') }}" class="btn btn-outline-light" target="_blank">
+        <i class="fas fa-download"></i>
+        Panier au format json
+    </a>
+{% endblock %}

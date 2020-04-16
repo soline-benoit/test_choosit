@@ -2,41 +2,49 @@
 
 {% block body %}
 
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm sticky-top">
-        <h5 class="my-0 mr-md-auto font-weight-normal">
-            <a href="{{ path('index') }}">Test Choosit</a>
-        </h5>
-        <a href="{{ path('show_cart') }}" type="button" class="btn btn-primary">
-            <i class="fas fa-shopping-basket"></i> Mon panier
-            {% if cartSession.totalQuantity > 0 %}
-            <span class="badge badge-light">
+    <header class="sticky-top">
+        <nav class="navbar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
+            <h5 class="my-0 mr-md-auto font-weight-normal">
+                <a href="{{ path('index') }}">Test Choosit</a>
+            </h5>
+            <a href="{{ path('show_cart') }}" type="button" class="btn btn-primary">
+                <i class="fas fa-shopping-basket"></i> Mon panier
+                {% if cartSession.totalQuantity > 0 %}
+                    <span class="badge badge-light">
                 {{ cartSession.totalQuantity < 99 ? cartSession.totalQuantity : "99+" }}
             </span>
-            {% endif %}
-        </a>
-    </div>
+                {% endif %}
+            </a>
+        </nav>
+    </header>
 
-    {% block breadcrumb %}{% endblock %}
+    <main role="main" class="flex-shrink-0">
+        {% block breadcrumb %}{% endblock %}
+        <div class="container py-5">
+            {% if app.request.hasPreviousSession %}
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}" role="alert">
 
-    <div class="container py-5">
+                            {% if label == "success" %}
+                                <i class="fas fa-check-circle"></i>
+                            {% elseif label == "danger" %}
+                                <i class="fas fa-times-circle"></i>
+                            {% endif %}
 
-        {% if app.request.hasPreviousSession %}
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ label }}" role="alert">
-
-                        {% if label == "success" %}
-                            <i class="fas fa-check-circle"></i>
-                        {% elseif label == "danger" %}
-                            <i class="fas fa-times-circle"></i>
-                        {% endif %}
-
-                        {{ message|raw }}
-                    </div>
+                            {{ message|raw }}
+                        </div>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        {% endif %}
+            {% endif %}
 
-        {% block content %}{% endblock %}
-    </div>
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container text-right">
+            {% block btn_json %}{% endblock %}
+        </div>
+    </footer>
 {% endblock %}
