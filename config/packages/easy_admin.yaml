@@ -3,4 +3,15 @@ easy_admin:
         Product:
             class: App\Entity\Product
             list:
-                fields: ['Id', 'Name', 'Price']
+                fields:
+                    - id
+                    - {property: 'Name', label: 'Nom', sortable: 'true'}
+                    - {property: 'Price', label: 'Prix (€)', type: 'float', sortable: 'true'}
+                    - {property: 'UpdatedAt', label: 'Dernière modification', type: 'datetime',
+                       sortable: 'true', format: 'd/m/Y à H:i:s'}
+            form:
+                fields:
+                    - {property: 'Name', type: 'text', label: 'Nom'}
+                    - {property: 'Description'}
+                    - {property: 'Price', type: 'money', type_options: { currency: 'EUR' }, label: 'Prix'}
+                    - {property: 'imageFile', type: 'vich_image', label: 'Image'}

@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Product;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
@@ -14,18 +15,18 @@ class ProductFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
 
         $productData = [
-            /* 01 */ [ "name" => "Livre", "price" => 10.0 ],
-            /* 02 */ [ "name" => "Chaise", "price" => 20.0 ],
-            /* 03 */ [ "name" => "Lampe", "price" => 15.5 ],
-            /* 04 */ [ "name" => "T-shirt", "price" => 9.99 ],
-            /* 05 */ [ "name" => "Pantalon", "price" => 22.99 ],
-            /* 06 */ [ "name" => "Ordinateur", "price" => 1500.00 ],
-            /* 07 */ [ "name" => "Télévision", "price" => 559.99 ],
-            /* 08 */ [ "name" => "Canapé", "price" => 530.00 ],
-            /* 09 */ [ "name" => "Bibliothèque", "price" => 100.0 ],
-            /* 10 */ [ "name" => "Tapis", "price" => 30.0 ],
-            /* 11 */ [ "name" => "Oreiller", "price" => 10.0 ],
-            /* 12 */ [ "name" => "Micro-onde", "price" => 59.99 ],
+            [ "name" => "Livre", "price" => 10.0],
+            [ "name" => "Chaise", "price" => 20.0 ],
+            [ "name" => "Lampe", "price" => 15.5 ],
+            [ "name" => "T-shirt", "price" => 9.99 ],
+            [ "name" => "Pantalon", "price" => 22.99 ],
+            [ "name" => "Ordinateur", "price" => 1500.00 ],
+            [ "name" => "Télévision", "price" => 559.99 ],
+            [ "name" => "Canapé", "price" => 530.00 ],
+            [ "name" => "Bibliothèque", "price" => 100.0 ],
+            [ "name" => "Tapis", "price" => 30.0 ],
+            [ "name" => "Oreiller", "price" => 10.0 ],
+            [ "name" => "Micro-onde", "price" => 59.99 ],
         ];
 
         foreach ($productData as $data) {
@@ -33,9 +34,14 @@ class ProductFixtures extends Fixture
             $product->setName($data["name"]);
             $product->setDescription($faker->paragraph());
             $product->setPrice($data["price"]);
+            $product->setUpdatedAt(new DateTime("now"));
+            $product->setImage("");
             $manager->persist($product);
-        }
+            $manager->flush();
 
-        $manager->flush();
+            $product->setImage($product->getSlug() . ".jpg");
+            $manager->persist($product);
+            $manager->flush();
+        }
     }
 }

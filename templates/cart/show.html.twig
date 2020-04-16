@@ -22,7 +22,7 @@
                     <li class="list-group-item d-flex mt-3">
                         <div class="mr-2">
                             <a href="{{ path('product_details', {slug: item.product.slug}) }}">
-                                <img src="{{ asset('build/images/' ~ item.product.slug ~ '.jpg') }}"
+                                <img src="{{ vich_uploader_asset(item.product, 'imageFile') }}"
                                      alt="image du produit {{ item.product.name }}"
                                      width="200px" class="img-thumbnail"/>
                             </a>

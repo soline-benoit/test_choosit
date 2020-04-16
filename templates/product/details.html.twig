@@ -15,7 +15,7 @@
 {% block content %}
     <div class="row">
         <div class="col-sm-5">
-            <img src="{{ asset('build/images/' ~ product.slug ~ '.jpg') }}"
+            <img src="{{ vich_uploader_asset(product, 'imageFile') }}"
                  alt="image du produit {{ product.name }}" class="img-thumbnail"/>
         </div>
         <div class="col-sm-7">
