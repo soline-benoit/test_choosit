@@ -14,12 +14,11 @@
 {% block content %}
     <h1>Mon panier</h1>
 
-    {% if listProducts|length > 0 %}
+    {% if listItems|length > 0 %}
 
         <div class="card">
             <ul class="list-group list-group-flush">
-                {% set sum = 0 %}
-                {% for item in listProducts %}
+                {% for item in listItems %}
                     <li class="list-group-item d-flex mt-3">
                         <div class="mr-2">
                             <a href="{{ path('product_details', {slug: item.product.slug}) }}">
@@ -42,11 +41,18 @@
                             <p class="m-0">Sous-total : {{ item.quantity * item.product.price }}€</p>
                         </div>
                     </li>
-                    {% set sum = sum + (item.product.price * item.quantity) %}
                 {% endfor %}
             </ul>
+            <div class="card-body">
+                <p class="card-text">Quantité totale :
+                    <strong>
+                        {{ cartSession.totalQuantity }} produit{{ cartSession.totalQuantity > 1 ? "s" }}
+                    </strong></p>
+            </div>
             <div class="card-footer d-flex justify-content-between">
-                <span class="align-self-center">Somme totale : <strong>{{ sum }}€</strong></span>
+                <span class="align-self-center">Somme totale :
+                    <strong>{{ cartSession.totalPrice }}€</strong>
+                </span>
                 <a href="{{ path('empty_cart_action') }}" class="btn btn-danger">
                     Vider le panier
                     <i class="fas fa-trash"></i>

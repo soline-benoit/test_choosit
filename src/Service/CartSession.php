@@ -4,22 +4,18 @@ namespace App\Service;
 
 use App\Entity\Product;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Doctrine\ORM\EntityManagerInterface;
 
 class CartSession
 {
     private $session;
-    private $manager;
 
     /**
      * CartSession constructor.
      * @param SessionInterface $session
-     * @param EntityManagerInterface $manager
      */
-    public function __construct(SessionInterface $session, EntityManagerInterface $manager)
+    public function __construct(SessionInterface $session)
     {
         $this->session = $session;
-        $this->manager = $manager;
     }
 
     /**
@@ -35,7 +31,22 @@ class CartSession
      */
     public function getTotalQuantity(): int
     {
-        return array_sum($this->getCart());
+        return array_sum(array_column($this->getCart(), 'quantity'));
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalPrice(): int
+    {
+        $totalPrice = 0;
+        foreach ($this->getCart() as $slug => $infos) {
+            if ($infos['quantity'] > 0) {
+                $totalPrice += $infos['quantity'] * $infos['price'];
+            }
+        }
+
+        return $totalPrice;
     }
 
     /**
@@ -46,7 +57,7 @@ class CartSession
     {
         $cart = $this->getCart();
         if (array_key_exists($product->getSlug(), $cart)) {
-            return $cart[$product->getSlug()];
+            return $cart[$product->getSlug()]["quantity"];
         }
 
         return 0;
@@ -59,7 +70,10 @@ class CartSession
     public function addToCart(Product $product, int $quantity)
     {
         $cart = $this->getCart();
-        $cart[$product->getSlug()] = $quantity;
+        $cart[$product->getSlug()] = [
+            "quantity" => $quantity,
+            "price" => $product->getPrice(),
+        ];
         $this->session->set("cart", $cart);
     }
 

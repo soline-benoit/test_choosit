@@ -71,21 +71,21 @@ class CartController extends AbstractController
      */
     public function showCart(CartSession $cartSession, EntityManagerInterface $manager)
     {
-        $listProducts = [];
+        $listItems = [];
 
-        foreach ($cartSession->getCart() as $slug => $quantity) {
-            if ($quantity > 0) {
+        foreach ($cartSession->getCart() as $slug => $infos) {
+            if ($infos > 0) {
                 $productRep = $manager->getRepository(Product::class);
 
-                $listProducts[] = [
+                $listItems[] = [
                     "product" => $productRep->findOneBy(["slug" => $slug]),
-                    "quantity" => $quantity
+                    "quantity" => $infos["quantity"]
                 ];
             }
         }
 
         return $this->render("cart/show.html.twig", [
-            "listProducts" => $listProducts
+            "listItems" => $listItems
         ]);
     }
 }
