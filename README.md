@@ -2,7 +2,7 @@
 Test Symfony pour Choosit dont l'objectif est de développer une application contenant un catalogue de produits et une gestion de panier basique.
 
 ## Configurations
-- PHP 7.4.3
+- PHP 7.4.4
 - PDO-SQLite PHP extension activée
 - [Composer](https://getcomposer.org/download/) pour gérer les dépendances
 - [Node.js](https://nodejs.org/fr/download/) et [Yarn](https://yarnpkg.com/getting-started/install) pour gérer les assets
