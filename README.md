@@ -23,6 +23,21 @@ $ cd my_project/
 $ yarn
 ```
 ---
+### Créer la base de données
+Exécuter ces commandes pour créer la base de données :
+```
+$ cd my_project/
+$ php bin/console doctrine:database:create
+$ php bin/console doctrine:migrations:migrate
+```
+---
+### Charger les fixtures
+Exécuter ces commandes pour charger les fixtures :
+```
+$ cd my_project/
+$ php bin/console doctrine:fixtures:load
+```
+---
 ### Lancer le serveur
 Il n'y a pas besoin de configuration spécifique pour lancer l'application. Si Symfony est déjà installé sur la machine, lancer la commande suivante et accéder à l'application sur le navigateur à l'adresse donnée (https://localhost:8000 par default)
 
@@ -34,29 +49,23 @@ $ symfony server:start
 Si le binaire Symfony n'est pas installé, lancer `php -S localhost:8000 -t public/` pour utiliser le serveur web PHP intégré ou bien configurer un serveur web comme Nginx ou Apache afin de lancer l'application.
 
 ## Tests
+### Lancer les tests
 Exécuter ces commandes pour lancer les tests :
 ```
 $ cd my_project/
 $ ./bin/phpunit
 ```
-
-Liste des tests disponibles :
-- **Tests unitaires**
-    - Test sur la quantité totale des produits contenus dans le panier après ajout d'un produit
-    - Test sur la quantité totale des produits contenus dans le panier après vidage du panier
-    - Test sur la quantité d'un produit spécifique contenu dans le panier
-    - Test sur le montant total du panier
-- **Tests fonctionnels**
-    - Test du code de réponse de la page d'accueil
-    - Test du code de réponse de la page "liste des produits"
-    - Test du nombre de produits affichés sur la page "liste des produits"
-
-## Fixtures
-Exécuter ces commandes pour charger les fixtures :
-```
-$ cd my_project/
-$ php bin/console doctrine:fixtures:load
-```
+---
+### Liste des tests disponibles :
+#### Tests unitaires
+- Test sur la quantité totale des produits contenus dans le panier après ajout d'un produit
+- Test sur la quantité totale des produits contenus dans le panier après vidage du panier
+- Test sur la quantité d'un produit spécifique contenu dans le panier
+- Test sur le montant total du panier
+#### Tests fonctionnels
+- Test du code de réponse de la page d'accueil
+- Test du code de réponse de la page "liste des produits"
+- Test du nombre de produits affichés sur la page "liste des produits"
 
 ## Export des produits au format CSV
 Exécuter ces commandes pour exporter tous les produits présents dans la base de données au format CSV :
