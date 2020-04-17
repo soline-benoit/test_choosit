@@ -23,6 +23,7 @@ class CartController extends AbstractController
      * @Route("/add/{slug}", name="add_to_cart_action")
      * @Route("/edit/{slug}", name="edit_quantity_action")
      * @Route("/remove/{slug}", name="remove_from_cart_action")
+     * @Route("/product/remove/{slug}", name="details_remove_from_cart_action")
      * @param Request $request
      * @param Product $product
      * @param CartSession $cartSession
@@ -32,22 +33,30 @@ class CartController extends AbstractController
     public function editCartAction(Request $request, Product $product,
                                    CartSession $cartSession, TranslatorInterface $translator)
     {
-        switch ($request->get("_route")) {
+
+        // choose flash message according to the action
+        switch ($route = $request->get("_route")) {
             case 'edit_quantity_action':
                 $flashMessage = $translator->trans('flashMessage.product.updated');
                 break;
-            case 'remove_from_cart_action':
-                $flashMessage = $translator->trans('flashMessage.product.removed');
+            case 'add_to_cart_action':
+                $flashMessage = $translator->trans('flashMessage.product.added');
                 break;
             default:
-                $flashMessage = $translator->trans('flashMessage.product.added');
+                $flashMessage = $translator->trans('flashMessage.product.removed');
                 break;
         }
 
         $cartSession->addToCart($product, $request->get("quantity", 0));
         $this->addFlash("success", $flashMessage);
 
-        return $this->redirectToRoute("product_details", [
+        // redirection to cart
+        if ($route == "remove_from_cart_action") {
+            return $this->redirectToRoute("show_cart");
+        }
+
+        // redirect to product details
+        return $routeRedirection = $this->redirectToRoute("product_details", [
             "slug" => $product->getSlug()
         ]);
     }
@@ -78,7 +87,7 @@ class CartController extends AbstractController
         $listItems = [];
 
         foreach ($cartSession->getCart() as $slug => $infos) {
-            if ($infos > 0) {
+            if ($infos["quantity"] > 0) {
                 $productRep = $manager->getRepository(Product::class);
 
                 $listItems[] = [

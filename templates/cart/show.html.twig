@@ -43,6 +43,12 @@
                             </p>
                             <p class="m-0">{{ 'cart.price.subtotal'|trans }} :
                                 {{ item.quantity * item.product.price }}€</p>
+                            <p class="m-0">
+                                <a class="text-danger"
+                                   href="{{ path('remove_from_cart_action', {slug: item.product.slug}) }}">
+                                    {{ 'cart.remove'|trans }}
+                                </a>
+                            </p>
                         </div>
                     </li>
                 {% endfor %}

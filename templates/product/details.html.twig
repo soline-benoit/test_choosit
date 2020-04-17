@@ -46,7 +46,7 @@
                         {% endif %}
                     </button>
                     {% if cartSession.quantityByProduct(product) > 0 %}
-                        <a href="{{ path('remove_from_cart_action', {slug: product.slug}) }}"
+                        <a href="{{ path('details_remove_from_cart_action', {slug: product.slug}) }}"
                            class="btn btn-secondary" type="submit">
                             {{ 'cart.remove'|trans }}
                             <i class="fas fa-times"></i>
