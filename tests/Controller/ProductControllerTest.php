@@ -10,7 +10,7 @@ class ProductControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/product/list');
+        $client->request('GET', '/fr/product/list');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
@@ -19,7 +19,7 @@ class ProductControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/product/list');
+        $crawler = $client->request('GET', '/fr/product/list');
 
         $numberOfProductCards = $crawler->filter(".card")->count();
 

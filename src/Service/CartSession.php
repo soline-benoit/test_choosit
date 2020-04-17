@@ -35,9 +35,9 @@ class CartSession
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getTotalPrice(): int
+    public function getTotalPrice(): float
     {
         $totalPrice = 0;
         foreach ($this->getCart() as $slug => $infos) {
