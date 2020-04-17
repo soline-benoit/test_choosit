@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Translatable\Translatable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
@@ -23,11 +24,13 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Translatable
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Gedmo\Translatable
      */
     private $description;
 
@@ -57,6 +60,11 @@ class Product
      * @var DateTime
      */
     private $updatedAt;
+
+    /**
+     * @Gedmo\Locale
+     */
+    private $locale;
 
     public function getId(): ?int
     {
@@ -145,5 +153,10 @@ class Product
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }

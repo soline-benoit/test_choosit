@@ -5,10 +5,10 @@
     <header class="sticky-top">
         <nav class="navbar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
             <h5 class="my-0 mr-md-auto font-weight-normal">
-                <a href="{{ path('index') }}">Test Choosit</a>
+                <a href="{{ path('index') }}">{{ 'choosit test'|trans }}</a>
             </h5>
             <a href="{{ path('show_cart') }}" type="button" class="btn btn-primary">
-                <i class="fas fa-shopping-basket"></i> Mon panier
+                <i class="fas fa-shopping-basket"></i> {{ 'cart.self'|trans }}
                 {% if cartSession.totalQuantity > 0 %}
                     <span class="badge badge-light">
                 {{ cartSession.totalQuantity < 99 ? cartSession.totalQuantity : "99+" }}

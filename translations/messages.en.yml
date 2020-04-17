@@ -1,0 +1,36 @@
+choosit test: Choosit Test
+home: Home
+product:
+  self: product
+  list: Products list
+  details: Product details
+  image: Image of
+  json:
+    all: All products in JSON format
+    single: in JSON format
+quantity:
+  self: Quantity
+  update: Update quantity
+  total: Total quantity
+cart:
+  self: My shopping cart
+  add: Add to cart
+  remove: Remove from cart
+  empty: Empty cart
+  isEmpty: Your shopping cart is empty!
+  toFill: to fill it
+  list: Check out available products
+  json: My shopping cart in JSON format
+  price:
+    subtotal: Subtotal
+    total: Total
+edit: Edit
+login:
+  title: Connexion à l'espace admin
+  currentlyLogged: You are currently logged in as
+  form:
+    username: Username
+    password: Password
+    rememberMe: Remember me
+    submit: Login
+logout: Logout

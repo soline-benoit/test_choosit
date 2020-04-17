@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,7 @@ class ProductController extends AbstractController
      */
     public function showList(EntityManagerInterface $manager)
     {
+        /** @var ProductRepository $productRep */
         $productRep = $manager->getRepository(Product::class);
         $products = $productRep->findBy([], ["name" => "ASC"]);
 

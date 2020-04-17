@@ -1,12 +1,14 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}{{ product.name }} / Détails du produit / Test Choosit{% endblock %}
+{% block title %}{{ product.name }} / {{ 'product.details'|trans }}{% endblock %}
 
 {% block breadcrumb %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('index') }}">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="{{ path('product_list') }}">Liste des produits</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('index') }}">{{ 'home'|trans }}</a></li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('product_list') }}">{{ 'product.list'|trans }}</a>
+            </li>
             <li class="breadcrumb-item active">{{ product.name }}</li>
         </ol>
     </nav>
@@ -16,7 +18,7 @@
     <div class="row">
         <div class="col-sm-5">
             <img src="{{ vich_uploader_asset(product, 'imageFile') }}"
-                 alt="image du produit {{ product.name }}" class="img-thumbnail"/>
+                 alt="{{ 'product.image'|trans }} {{ product.name }}" class="img-thumbnail"/>
         </div>
         <div class="col-sm-7">
             <h1>{{ product.name }}
@@ -32,21 +34,21 @@
                        min="0" class="form-control"
                        value="{{ cartSession.quantityByProduct(product) > 0 ?
                        cartSession.quantityByProduct(product) }}"
-                       placeholder="Quantité">
+                       placeholder="{{ 'quantity.self'|trans }}">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
                         {% if cartSession.quantityByProduct(product) > 0 %}
-                            Modifier la quantité
+                            {{ 'quantity.update'|trans }}
                             <i class="fas fa-edit"></i>
                         {% else %}
-                            Ajouter au panier
+                            {{ 'cart.add'|trans }}
                             <i class="fas fa-cart-plus"></i>
                         {% endif %}
                     </button>
                     {% if cartSession.quantityByProduct(product) > 0 %}
                         <a href="{{ path('remove_from_cart_action', {slug: product.slug}) }}"
                            class="btn btn-secondary" type="submit">
-                            Retirer du panier
+                            {{ 'cart.remove'|trans }}
                             <i class="fas fa-times"></i>
                         </a>
                     {% endif %}
@@ -59,6 +61,6 @@
 {% block btn_json %}
     <a href="{{ path('json_product_by_id', {id: product.id}) }}" class="btn btn-outline-light" target="_blank">
         <i class="fas fa-download"></i>
-        {{ product.name }} au format json
+        {{ product.name }} {{ 'product.json.single'|trans }}
     </a>
 {% endblock %}

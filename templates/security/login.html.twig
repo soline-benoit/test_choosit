@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}{{ 'login.title'|trans }}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset("build/login.css") }}"/>
@@ -8,8 +8,8 @@
 
 {% block body %}
     <form class="form-signin" method="post">
-        <h2 class="text-center"><a href="{{ path("index") }}">Test Choosit</a></h2>
-        <h1 class="h3 mb-3 font-weight-normal text-center">Connexion à l'espace admin</h1>
+        <h2 class="text-center"><a href="{{ path("index") }}">{{ 'choosit test'|trans }}</a></h2>
+        <h1 class="h3 mb-3 font-weight-normal text-center">{{ 'login.title'|trans }}</h1>
 
         {% if error %}
             <div class="alert alert-danger">
@@ -21,27 +21,30 @@
         {% if app.user %}
             <div class="alert alert-secondary">
                 <i class="fas fa-info-circle"></i>
-                Vous êtes connecté en tant que <strong>{{ app.user.username }}</strong>,
-                <a href="{{ path('app_logout') }}">déconnexion</a>
+                {{ 'login.currentlyLogged'|trans }} <strong>{{ app.user.username }}</strong>,
+                <a href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a>
             </div>
         {% endif %}
 
-        <label for="inputUsername" class="sr-only">Nom d'utilisateur</label>
+        <label for="inputUsername" class="sr-only">{{ 'login.form.username'|trans }}</label>
         <input type="text" id="inputUsername" name="username"
-               value="{{ last_username }}" class="form-control" placeholder="admin" required autofocus>
+               value="{{ last_username }}" class="form-control"
+               placeholder="{{ 'login.form.username'|trans }}" required autofocus>
 
-        <label for="inputPassword" class="sr-only">Password</label>
+        <label for="inputPassword" class="sr-only">{{ 'login.form.password'|trans }}</label>
         <input type="password" id="inputPassword" name="password"
-               class="form-control" placeholder="Mot de passe" required>
+               class="form-control" placeholder="{{ 'login.form.password'|trans }}" required>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         <div class="custom-control custom-switch my-3">
             <input type="checkbox" class="custom-control-input" name="_remember_me" id="rememberMe">
-            <label class="custom-control-label" for="rememberMe">Se souvenir de moi</label>
+            <label class="custom-control-label" for="rememberMe">{{ 'login.form.rememberMe'|trans }}</label>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            {{ 'login.form.submit'|trans }}
+        </button>
 
     </form>
 {% endblock %}

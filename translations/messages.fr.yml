@@ -1,1 +1,37 @@
 Product: Produit
+choosit test: Test Choosit
+home: Accueil
+product:
+  self: produit
+  list: Liste des produits
+  details: Détails du produit
+  image: Image de
+  json:
+    all: Tous les produits au format JSON
+    single: au format JSON
+quantity:
+  self: Quantité
+  update: Modifier la quantité
+  total: Quantité totale
+cart:
+  self: Mon panier
+  add: Ajouter au panier
+  remove: Retirer du panier
+  empty: Vider le panier
+  isEmpty: Votre panier est vide !
+  toFill: pour le remplir
+  list: Consulter la liste des produits disponibles
+  json: Mon panier au format JSON
+  price:
+    subtotal: Sous-total
+    total: Total
+edit: Modifier
+login:
+  title: Connexion à l'espace admin
+  currentlyLogged: Vous êtes actuellement connecté en tant que
+  form:
+    username: Nom d'utilisateur
+    password: Mot de passe
+    rememberMe: Se souvenir de moi
+    submit: Connexion
+logout: Déconnexion

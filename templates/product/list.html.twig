@@ -1,18 +1,18 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}Liste des produits / Test Choosit{% endblock %}
+{% block title %}{{ 'product.list'|trans }}{% endblock %}
 
 {% block breadcrumb %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('index') }}">Accueil</a></li>
-            <li class="breadcrumb-item active">Liste des produits</li>
+            <li class="breadcrumb-item"><a href="{{ path('index') }}">{{ 'home'|trans }}</a></li>
+            <li class="breadcrumb-item active">{{ 'product.list'|trans }}</li>
         </ol>
     </nav>
 {% endblock %}
 
 {% block content %}
-    <h1>Liste des produits</h1>
+    <h1>{{ 'product.list'|trans }}</h1>
     <hr/>
 
     <div class="row">
@@ -21,7 +21,7 @@
                 <div class="card h-100">
                     <a href="{{ path('product_details', {slug: product.slug}) }}">
                         <img src="{{ vich_uploader_asset(product, 'imageFile') }}"
-                             class="card-img-top" alt="image du produit {{ product.name }}">
+                             class="card-img-top" alt="{{ 'product.image'|trans }} {{ product.name }}">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">
@@ -33,7 +33,7 @@
                     <div class="card-footer bg-transparent text-right">
                         <a href="{{ path('product_details', {slug: product.slug}) }}" class="btn btn-light">
                             <i class="fas fa-search-plus"></i>
-                            Détails du produit
+                            {{ 'product.details'|trans }}
                         </a>
                     </div>
                 </div>
@@ -45,6 +45,6 @@
 {% block btn_json %}
     <a href="{{ path('json_all_products') }}" class="btn btn-outline-light" target="_blank">
         <i class="fas fa-download"></i>
-        Tous les produits au format json
+        {{ 'product.json.all'|trans }}
     </a>
 {% endblock %}
