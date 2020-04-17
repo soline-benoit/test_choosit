@@ -5,6 +5,7 @@ easy_admin:
             list:
                 fields:
                     - id
+                    - {property: 'image', template: 'vich_uploader_image.html.twig'}
                     - {property: 'Name', label: 'Nom', sortable: 'true'}
                     - {property: 'Price', label: 'Prix (€)', type: 'float', sortable: 'true'}
                     - {property: 'UpdatedAt', label: 'Dernière modification', type: 'datetime',
