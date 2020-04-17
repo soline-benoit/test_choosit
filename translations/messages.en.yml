@@ -34,3 +34,10 @@ login:
     rememberMe: Remember me
     submit: Login
 logout: Logout
+flashMessage:
+  product:
+    removed: The product has been removed from your shopping cart
+    added: The product has been added to your shopping cart
+    updated: The quantity of the product has been updated
+  cart:
+    emptied: Your shopping cart has been emptied

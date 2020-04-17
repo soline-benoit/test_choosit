@@ -35,3 +35,10 @@ login:
     rememberMe: Se souvenir de moi
     submit: Connexion
 logout: Déconnexion
+flashMessage:
+  product:
+    removed: Le produit a été retiré de votre panier
+    added: Le produit a été ajouté à votre panier
+    updated: La quantité du produit a été modifiée
+  cart:
+    emptied: Votre panier a été vidé

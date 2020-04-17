@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/cart")
@@ -25,19 +26,21 @@ class CartController extends AbstractController
      * @param Request $request
      * @param Product $product
      * @param CartSession $cartSession
+     * @param TranslatorInterface $translator
      * @return RedirectResponse
      */
-    public function editCartAction(Request $request, Product $product, CartSession $cartSession)
+    public function editCartAction(Request $request, Product $product,
+                                   CartSession $cartSession, TranslatorInterface $translator)
     {
         switch ($request->get("_route")) {
             case 'edit_quantity_action':
-                $flashMessage = "La quantité du produit a été modifiée";
+                $flashMessage = $translator->trans('flashMessage.product.updated');
                 break;
             case 'remove_from_cart_action':
-                $flashMessage = "Le produit a été retiré du panier";
+                $flashMessage = $translator->trans('flashMessage.product.removed');
                 break;
             default:
-                $flashMessage = "Le produit a été ajouté à votre panier";
+                $flashMessage = $translator->trans('flashMessage.product.added');
                 break;
         }
 
@@ -52,13 +55,14 @@ class CartController extends AbstractController
     /**
      * @Route("/empty", name="empty_cart_action")
      * @param CartSession $cartSession
+     * @param TranslatorInterface $translator
      * @return RedirectResponse
      */
-    public function emptyCartAction(CartSession $cartSession)
+    public function emptyCartAction(CartSession $cartSession, TranslatorInterface $translator)
     {
         $cartSession->emptyCart();
 
-        $this->addFlash("success", "Le panier a été vidé");
+        $this->addFlash("success", $translator->trans('flashMessage.cart.emptied'));
 
         return $this->redirectToRoute("show_cart");
     }
